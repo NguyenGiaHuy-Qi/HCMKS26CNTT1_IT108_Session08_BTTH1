@@ -1,0 +1,31 @@
+## Phần 1: Phân tích
+
+**1. Tại sao máy tính bị Not Responding khi mở file bằng Notepad?**
+
+File `server_log_800MB.log` có dung lượng rất lớn, khoảng 800MB. Khi mở bằng Notepad, máy tính phải xử lý một lượng dữ liệu lớn nên có thể tốn nhiều RAM và CPU, khiến máy chạy chậm hoặc bị treo. Vì vậy, nên sử dụng PowerShell để đọc file log thay vì mở trực tiếp bằng Notepad.
+
+**2. Tại sao lệnh cat bị lỗi trong CMD nhưng chạy được trong PowerShell?**
+
+Trong CMD, lệnh `cat` không được hỗ trợ mặc định nên khi sử dụng sẽ báo lỗi không nhận diện được lệnh.
+
+Còn trong PowerShell, `cat` là bí danh của lệnh `Get-Content`, vì vậy có thể sử dụng lệnh này để đọc nội dung file.
+
+## Phần 2: Bộ lệnh PowerShell
+
+**1. Xem toàn bộ nội dung file**
+
+```powershell
+Get-Content .\server_log_800MB.log
+```
+
+Lệnh này dùng để đọc nội dung của file log và hiển thị ra màn hình.
+
+**2. Xem 10 dòng cuối cùng của file**
+
+```powershell
+Get-Content .\server_log_800MB.log -Tail 10
+```
+
+Lệnh này chỉ hiển thị 10 dòng cuối cùng của file, giúp kiểm tra các thông tin và lỗi mới nhất mà không cần xem toàn bộ nội dung.
+
+**Kết luận:** Khi làm việc với file log có dung lượng lớn, nên sử dụng PowerShell để đọc và kiểm tra dữ liệu. Đặc biệt, lệnh `Get-Content -Tail 10` giúp xem nhanh các dòng cuối cùng, tiết kiệm thời gian và tránh việc phải hiển thị toàn bộ file.
